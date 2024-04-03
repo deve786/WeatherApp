@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <title>Weather App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Russo+One&family=Shantell+Sans:wght@600;700&display=swap');
+        *{
+            font-family: "Nunito Sans", sans-serif;
+        }
+        .bg_img{
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+        }
+    </style>
+</head>
+<body id="bgg">
+    <div class="  flex justify-center items-center h-screen px-6 ">
+        <div class=" flex flex-col md:flex-row w-full justify-center   ">
+            <div class="rounded-2xl bg_img py-12 px-6 flex flex-row justify-evenly text-slate-100 w-full md:w-9/12 me-2" id="details">
+                <div>
+                    <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
+                    
+                    <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4" id="imgg">
+                    <h1 class="font-black text-3xl md:text-4xl mt-3">Temperature</h1>
+                    <h2 class="text-md md:text-lg mt-2">Date</h2>
+                    <p class="mt-2">
+                        <i class="fa-solid fa-wind me-2"></i><span class="me-4">Wind</span> 512 <span class="ms-1"> |</span>
+                        <span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> 645<span class="ms-1"> |</span>
+                        <i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span>123
+                    </p>
+                    <h2 class="text-md md:text-lg mt-2">Weather</h2>
+                    <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
+                </div>
+                <div class=" flex flex-col justify-start p-3 w-full md:w-1/2">
+                    <div class="flex flex-row items-center mb-2">
+                        <input id="city" type="text" class="flex-grow p-2 mr-2" placeholder="Enter city name">
+                        <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
+                    </div>
+                    <div class="flex flex-col justify-around space-y-2" id="details2">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="bg_img rounded-2xl">
+                
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script >
+    function fetchdata(){
+        var city1=city.value
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city1}&appid=5b4bee0ba241d092159faf007e166080`).then(i=>i.json()).then(data=>accessData(data))
+
+    function accessData(data){
+        
+        const date = new Date();
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        
+
+        
+        var da=date.getDate()
+        let mn = months[date.getMonth()];
+        var yr=date.getFullYear()
+        
+        
+        var day = days[date.getDay()];
+        var temp= Math.floor(data.main.temp-273.15)
+
+        
+        
+        details.innerHTML=`
+
+        <div>
+                    <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>${data.name}</h1>
+                    
+                    <div id="imgg"><img src="./Media/clearSky.png" alt="" class="w-1/4  my-4"></div>
+                    <h1 class="font-black text-3xl md:text-4xl mt-3">${temp}</h1>
+                    <h2 class="text-md md:text-lg mt-2">${da} ${mn} ${yr} |  ${day}</h2>
+                    <p class="mt-2">
+                        <i class="fa-solid fa-wind me-2"></i><span class="me-4">Wind</span> ${data.wind.speed} <span class="ms-1"> |</span>
+                        <span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> ${data.main.humidity} <span class="ms-1"> |</span>
+                        <i class="fas fa-temperature-up me-2"></i><span class="me-4">Pressure</span>${data.main.pressure} 
+                    </p>
+                    <h2 class="text-md md:text-lg mt-2">${data.weather[0].main}</h2>
+                    <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
+                </div>
+                <div class=" flex flex-col justify-evenly p-3 w-full md:w-1/2">
+                    <div class="flex flex-row items-center mb-2">
+                        <input id="city" type="text" class="flex-grow p-2 mr-2" placeholder="Enter city name">
+                        <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
+                    </div>
+                    <div class="flex flex-col justify-around space-y-2" id="details2">
+                        
+                    </div>
+                </div>
+
+                
+        `
+
+        details2.innerHTML=`
+                    <div class="flex flex-row justify-between">
+                        <p>City</p>
+                        <p>${data.name}</p>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <p>Feels Like</p>
+                        <p>${data.main.feels_like}</p>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <p>Pressure</p>
+                        <p>${data.main.pressure}</p>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <p>Humidity</p>
+                        <p>${data.main.humidity}</p>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <p>Wind Speed</p>
+                        <p>${data.wind.speed}</p>
+                    </div>
+        `
+
+        if(temp>=43){
+            console.log("Extremely hot:");
+            imgg.innerHTML=`
+                <img src="./Media/hot.png" alt="" class="w-1/4  my-4">
+            `
+        }
+        else if(temp>33){
+            console.log("Hot");
+            imgg.innerHTML=`
+                <img src="./Media/hot.png" alt="" class="w-1/4  my-4">
+            `
+        }
+        else if(temp>22){
+            console.log("Warm");
+            imgg.innerHTML=`
+            <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4">
+            `
+        }
+        else if(temp>11){
+            console.log("Perfect");
+            imgg.innerHTML=`
+            <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4">
+            `
+        }
+        else if(temp>6){
+            console.log("Cool");
+            imgg.innerHTML=`
+                <img src="./Media/reallyCold.png" alt="" class="w-w-1/4  my-4">
+            `
+            
+        }
+        else {
+            console.log("Really cold");
+            imgg.innerHTML=`
+                <img src="./Media/reallyCold.png" alt="" class="w-1/4  my-4">
+            `
+            bgg.style.backgroundImage = "url('./Media/snowBg.gif')";
+            bgg.style.backgroundSize="cover"
+        }
+    }
+
+}
+</script>
+</html>

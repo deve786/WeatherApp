@@ -22,24 +22,25 @@
 <body id="bgg">
     <div class="  flex justify-center items-center h-screen px-6 ">
         <div class=" flex flex-col md:flex-row w-full justify-center   ">
-            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap flex-row justify-evenly text-slate-100 w-full md:w-9/12 me-2" id="details">
+            <div class="rounded-2xl bg_img py-12 px-4 flex flex-wrap flex-row justify-center text-slate-100 w-full md:w-9/12 me-2" id="details">
                 <div class="w-1/2">
                     <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
                     
                     <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4" id="imgg">
                     <h1 class="font-black text-3xl md:text-4xl mt-3">Temperature</h1>
                     <h2 class="text-md md:text-lg mt-2">Date</h2>
-                    <p class="mt-2">
-                        <i class="fa-solid fa-wind me-2"></i><span class="me-4">Wind</span> 512 <span class="ms-1"> |</span>
-                        <span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> 645<span class="ms-1"> |</span>
-                        <i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span>123
+                    <p class="mt-2 md:flex flex-col">
+                        <div><i class="fa-solid fa-wind me-2 ms-2"></i><span class="me-4">Wind</span> 512</div> 
+                        
+                        <div><span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> 645</div>
+                        <div><i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span>123</div>
                     </p>
                     <h2 class="text-md md:text-lg mt-2">Weather</h2>
                     <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
                 </div>
                 <div class=" flex flex-col justify-start p-3 w-full md:w-1/2">
                     <div class="flex flex-wrap gap-2 flex-row items-center mb-2">
-                        <input id="city" type="text" class="flex-grow p-2 mr-2" placeholder="Enter city name">
+                        <input id="city" type="text" class="flex-grow p-2 mr-2 text-gray-900" placeholder="Enter city name">
                         <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
                     </div>
                     <div class="flex flex-col justify-around space-y-2" id="details2">
@@ -80,22 +81,22 @@
         details.innerHTML=`
 
                 <div class="w-1/2">
-                    <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
+                    <h1 class=" text-2xl "><i class="fa-solid fa-location-dot me-2"></i>${data.name}</h1>
                     
-                    <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4" id="imgg">
-                    <h1 class="font-black text-3xl md:text-4xl mt-3">Temperature</h1>
-                    <h2 class="text-md md:text-lg mt-2">Date</h2>
+                    <div id="imgg"><img src="./Media/clearSky.png" alt="" class="w-2/4  my-4" ></div>
+                    <h1 class="font-black text-3xl md:text-4xl mt-3">${temp}°C</h1>
+                    <h2 class="text-md md:text-lg mt-2">${da} ${mn} ${yr} |  ${day}</h2>
                     <p class="mt-2">
-                        <i class="fa-solid fa-wind me-2"></i><span class="me-4">Wind</span> 512 <span class="ms-1"> |</span>
-                        <span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> 645<span class="ms-1"> |</span>
-                        <i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span>123
+                        <i class="fa-solid fa-wind me-2"></i><span class="me-2">Wind</span>  ${data.wind.speed}  <span class="ms-1"> </span>
+                        <span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-2">Humidity</span> ${data.main.humidity}<span class="ms-1"> </span>
+                        <i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-2">Pressure</span>${data.main.pressure}
                     </p>
-                    <h2 class="text-md md:text-lg mt-2">Weather</h2>
+                    <h2 class="text-md font-black md:text-lg mt-2">${data.weather[0].main}</h2>
                     <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
                 </div>
-                <div class=" flex flex-col justify-start p-3 w-full md:w-1/2">
+                <div class=" flex flex-col justify-start p-3 w-full md:w-1/2 ">
                     <div class="flex flex-wrap gap-2 flex-row items-center mb-2">
-                        <input id="city" type="text" class="flex-grow p-2 mr-2" placeholder="Enter city name">
+                        <input id="city" type="text" class="flex-grow p-2 mr-2 text-gray-900" placeholder="Enter city name">
                         <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
                     </div>
                     <div class="flex flex-col justify-around space-y-2" id="details2">

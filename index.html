@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
     <title>Weather App</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Russo+One&family=Shantell+Sans:wght@600;700&display=swap');
-        *{
+
+        * {
             font-family: "Nunito Sans", sans-serif;
         }
-        .bg_img{
+
+        .bg_img {
             background-color: #8EC5FC;
             background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
 
         }
+
+        #bgg {
+            background-image: url('./Media/bg.jpg');
+            background-size: cover;
+            opacity: 0.8;
+        }
     </style>
 </head>
+
 <body id="bgg">
     <div class="  flex justify-center items-center h-screen px-6 ">
         <div class=" flex flex-col md:flex-row w-full justify-center   ">
-            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap flex-row justify-center text-slate-100 w-full md:w-9/12 me-2" id="details">
+            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap flex-row justify-center text-slate-700 w-full md:w-9/12 me-2"
+                id="details">
                 <div class="w-1/2">
                     <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
-                    
-                    <img src="./Media/clearSky.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4" id="imgg">
+
+
+                    <img src="https://openweathermap.org/img/wn/01n@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4"
+                        id="imgg">
                     <h1 class="font-black text-3xl md:text-4xl mt-3">Temperature</h1>
                     <h2 class="text-md md:text-lg mt-2">Date</h2>
                     <div class="mt-2  md:flex flex-rows">
-                        <div><i class="fa-solid fa-wind me-2 ms-2"></i><span class="me-4">Wind</span> </div> 
-                        
-                        <div><span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> </div>
+                        <div><i class="fa-solid fa-wind me-2 ms-2"></i><span class="me-4">Wind</span> </div>
+
+                        <div><span class="mdi mdi-water-percent me-2 ms-2"></span><span class="me-4">Humidity</span>
+                        </div>
                         <div><i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span></div>
                     </div>
                     <h2 class="text-md md:text-lg mt-2">Weather</h2>
@@ -40,45 +56,74 @@
                 </div>
                 <div class=" flex flex-col justify-start p-3 w-full md:w-1/2">
                     <div class="flex flex-wrap gap-2 flex-row items-center mb-2">
-                        <input id="city" type="text" class="flex-grow p-2 mr-2 text-gray-900" placeholder="Enter city name">
-                        <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
+                        <input id="city" type="text" class="flex-grow p-2 mr-2 text-gray-900"
+                            placeholder="Enter city name">
+                        <input onclick="fetchdata()" type="button" value="Search"
+                            class="flex-none border p-2 cursor-pointer">
                     </div>
                     <div class="flex flex-col justify-around space-y-2" id="details2">
-                        
+                        <div class="flex flex-row justify-between">
+                            <p>City</p>
+                            <p>--</p>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <p>Feels Like</p>
+                            <p>--</p>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <p>Pressure</p>
+                            <p>-- </p>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <p>Humidity</p>
+                            <p>--</p>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <p>Wind Speed</p>
+                            <p>--</p>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <p>Sunrise</p>
+                            <p id="srise">--</p>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <p>Sunset</p>
+                            <p id="sset">--</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="bg_img rounded-2xl">
-                
-                
+
+
             </div>
         </div>
     </div>
 </body>
-<script >
-    function fetchdata(){
-        var city1=city.value
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city1}&appid=5b4bee0ba241d092159faf007e166080`).then(i=>i.json()).then(data=>accessData(data))
+<script>
+    function fetchdata() {
+        var city1 = city.value
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city1}&appid=5b4bee0ba241d092159faf007e166080`).then(i => i.json()).then(data => accessData(data))
 
-    function accessData(data){
-        
-        const date = new Date();
-        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        
+        function accessData(data) {
 
-        
-        var da=date.getDate()
-        let mn = months[date.getMonth()];
-        var yr=date.getFullYear()
-        
-        
-        var day = days[date.getDay()];
-        var temp= Math.floor(data.main.temp-273.15)
+            const date = new Date();
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-        
-        
-        details.innerHTML=`
+
+
+            var da = date.getDate()
+            let mn = months[date.getMonth()];
+            var yr = date.getFullYear()
+
+
+            var day = days[date.getDay()];
+            var temp = Math.floor(data.main.temp - 273.15)
+
+
+
+            details.innerHTML = `
 
                 <div class="w-1/2">
                     <h1 class=" text-2xl "><i class="fa-solid fa-location-dot me-2"></i>${data.name}</h1>
@@ -109,18 +154,18 @@
                 
         `
 
-        details2.innerHTML=`
+            details2.innerHTML = `
                     <div class="flex flex-row justify-between">
                         <p>City</p>
                         <p>${data.name}</p>
                     </div>
                     <div class="flex flex-row justify-between">
                         <p>Feels Like</p>
-                        <p>${data.main.feels_like}</p>
+                        <p>${temp}°C</p>
                     </div>
                     <div class="flex flex-row justify-between">
                         <p>Pressure</p>
-                        <p>${data.main.pressure}</p>
+                        <p>${data.main.pressure} Pa</p>
                     </div>
                     <div class="flex flex-row justify-between">
                         <p>Humidity</p>
@@ -128,51 +173,113 @@
                     </div>
                     <div class="flex flex-row justify-between">
                         <p>Wind Speed</p>
-                        <p>${data.wind.speed}</p>
+                        <p>${data.wind.speed} Km/h</p>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <p>Sunrise</p>
+                        <p id="srise">${data.sys.sunrise}</p>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <p>Sunset</p>
+                        <p id="sset">${data.sys.sunset}</p>
                     </div>
         `
 
-        if(data.description='clear sky'){
-            console.log(data.main);
-            imgg.innerHTML=`
+
+            if (data.description = 'clear sky') {
+                console.log(data.main);
+                imgg.innerHTML = `
             <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
-        }
-        else if(data.description='few clouds'){
-            console.log("Hot");
-            imgg.innerHTML=`
+            }
+            else if (data.description = 'few clouds') {
+                console.log("Hot");
+                imgg.innerHTML = `
                 <img src="./Media/hat.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
-        }
-        else if(data.description='scattered clouds'){
-            console.log("Warm");
-            imgg.innerHTML=`
+            }
+            else if (data.description = 'scattered clouds') {
+                console.log("Warm");
+                imgg.innerHTML = `
             <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
-        }
-        else if(data.description='broken clouds'){
-            console.log("Perfect");
-            imgg.innerHTML=`
-            <img src="./Media/clearSky.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            }
+            else if (data.description = 'broken clouds') {
+                console.log("Perfect");
+                imgg.innerHTML = `
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
-        }
-        else if(data.description='shower rain'){
-            console.log("Cool");
-            imgg.innerHTML=`
-                <img src="./Media/reallyCold.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            }
+            else if (data.description = 'shower rain') {
+                console.log("Cool");
+                imgg.innerHTML = `
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
-            
-        }
-        else {
-            console.log("Really cold");
-            imgg.innerHTML=`
-                <img src="./Media/reallyCold.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
-            `
-            bgg.style.backgroundImage = "url('./Media/snowBg.gif')";
-            bgg.style.backgroundSize="cover"
-        }
-    }
 
-}
+            }
+            else if (data.description = 'rain') {
+                console.log("Cool");
+                imgg.innerHTML = `
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            `
+
+            }
+            else if (data.description = 'thunderstorm') {
+                console.log("Cool");
+                imgg.innerHTML = `
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            `
+
+            }
+            else if (data.description = 'snow') {
+                console.log("Cool");
+                imgg.innerHTML = `
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            `
+
+            }
+            else if (data.description = 'mist') {
+                console.log("Cool");
+                imgg.innerHTML = `
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            `
+
+            }
+            else {
+                console.log("Really cold");
+                imgg.innerHTML = `
+                <img src="./Media/reallyCold.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
+            `
+                bgg.style.backgroundImage = "url('./Media/snowBg.gif')";
+                bgg.style.backgroundSize = "cover"
+            }
+            var rise = data.sys.sunrise;
+            var zone = data.timezone;
+            var set = data.sys.sunset;
+            console.log(rise);
+            srise.innerHTML = timecalc(rise, zone);
+            sset.innerHTML = timecalc(set, zone);
+            function timecalc(sun, zone) {
+                let sunriseDate = new Date(sun * 1000);
+                sunriseDate.setSeconds(sunriseDate.getSeconds() + zone);
+                const sunriseHours = sunriseDate.getUTCHours().toString().padStart(2, "0");
+                const sunriseMinutes = sunriseDate
+                    .getUTCMinutes()
+                    .toString()
+                    .padStart(2, "0");
+                const sunriseTime = `${sunriseHours}:${sunriseMinutes}`;
+                var splitTime = sunriseTime.split(":");
+                var hours = parseInt(splitTime[0]);
+                var minutes = parseInt(splitTime[1]);
+                var period = hours >= 12 ? "PM" : "AM";
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                return hours + ":" + minutes + " " + period;
+            }
+        }
+
+    }
 </script>
+
 </html>

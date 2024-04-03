@@ -22,19 +22,19 @@
 <body id="bgg">
     <div class="  flex justify-center items-center h-screen px-6 ">
         <div class=" flex flex-col md:flex-row w-full justify-center   ">
-            <div class="rounded-2xl bg_img py-12 px-4 flex flex-wrap flex-row justify-center text-slate-100 w-full md:w-9/12 me-2" id="details">
+            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap flex-row justify-center text-slate-100 w-full md:w-9/12 me-2" id="details">
                 <div class="w-1/2">
                     <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
                     
-                    <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4" id="imgg">
+                    <img src="./Media/clearSky.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4" id="imgg">
                     <h1 class="font-black text-3xl md:text-4xl mt-3">Temperature</h1>
                     <h2 class="text-md md:text-lg mt-2">Date</h2>
-                    <p class="mt-2 md:flex flex-col">
-                        <div><i class="fa-solid fa-wind me-2 ms-2"></i><span class="me-4">Wind</span> 512</div> 
+                    <div class="mt-2  md:flex flex-rows">
+                        <div><i class="fa-solid fa-wind me-2 ms-2"></i><span class="me-4">Wind</span> </div> 
                         
-                        <div><span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> 645</div>
-                        <div><i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span>123</div>
-                    </p>
+                        <div><span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> </div>
+                        <div><i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span></div>
+                    </div>
                     <h2 class="text-md md:text-lg mt-2">Weather</h2>
                     <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
                 </div>
@@ -86,11 +86,13 @@
                     <div id="imgg"><img src="./Media/clearSky.png" alt="" class="w-2/4  my-4" ></div>
                     <h1 class="font-black text-3xl md:text-4xl mt-3">${temp}°C</h1>
                     <h2 class="text-md md:text-lg mt-2">${da} ${mn} ${yr} |  ${day}</h2>
-                    <p class="mt-2">
-                        <i class="fa-solid fa-wind me-2"></i><span class="me-2">Wind</span>  ${data.wind.speed}  <span class="ms-1"> </span>
-                        <span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-2">Humidity</span> ${data.main.humidity}<span class="ms-1"> </span>
-                        <i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-2">Pressure</span>${data.main.pressure}
-                    </p>
+                    <div class="mt-2 lg:flex flex-rows">
+                        <div lg:flex flex-rows><i class="fa-solid fa-wind me-2 ms-2"></i><span class="me-4">Wind</span> ${data.wind.speed}</div> 
+                        
+                        <div><span class="mdi mdi-water-percent me-2 ms-2" ></span><span class="me-4">Humidity</span> ${data.main.humidity}</div>
+                        <div><i class="fas fa-temperature-up me-2 ms-2"></i><span class="me-4">Pressure</span>${data.main.pressure}</div>
+                        
+                    </div>
                     <h2 class="text-md font-black md:text-lg mt-2">${data.weather[0].main}</h2>
                     <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
                 </div>
@@ -99,7 +101,7 @@
                         <input id="city" type="text" class="flex-grow p-2 mr-2 text-gray-900" placeholder="Enter city name">
                         <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
                     </div>
-                    <div class="flex flex-col justify-around space-y-2" id="details2">
+                    <div class="flex flex-col justify-around space-y-2 mt-6" id="details2">
                         
                     </div>
                 </div>
@@ -130,41 +132,41 @@
                     </div>
         `
 
-        if(temp>=43){
-            console.log("Extremely hot:");
+        if(data.description='clear sky'){
+            console.log(data.main);
             imgg.innerHTML=`
-                <img src="./Media/hot.png" alt="" class="w-1/4  my-4">
+            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
         }
-        else if(temp>33){
+        else if(data.description='few clouds'){
             console.log("Hot");
             imgg.innerHTML=`
-                <img src="./Media/hot.png" alt="" class="w-1/4  my-4">
+                <img src="./Media/hat.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
         }
-        else if(temp>22){
+        else if(data.description='scattered clouds'){
             console.log("Warm");
             imgg.innerHTML=`
-            <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4">
+            <img src="https://openwesathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
         }
-        else if(temp>11){
+        else if(data.description='broken clouds'){
             console.log("Perfect");
             imgg.innerHTML=`
-            <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4">
+            <img src="./Media/clearSky.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
         }
-        else if(temp>6){
+        else if(data.description='shower rain'){
             console.log("Cool");
             imgg.innerHTML=`
-                <img src="./Media/reallyCold.png" alt="" class="w-w-1/4  my-4">
+                <img src="./Media/reallyCold.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
             
         }
         else {
             console.log("Really cold");
             imgg.innerHTML=`
-                <img src="./Media/reallyCold.png" alt="" class="w-1/4  my-4">
+                <img src="./Media/reallyCold.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
             `
             bgg.style.backgroundImage = "url('./Media/snowBg.gif')";
             bgg.style.backgroundSize="cover"

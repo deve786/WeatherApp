@@ -22,8 +22,8 @@
 <body id="bgg">
     <div class="  flex justify-center items-center h-screen px-6 ">
         <div class=" flex flex-col md:flex-row w-full justify-center   ">
-            <div class="rounded-2xl bg_img py-12 px-6 flex flex-row justify-evenly text-slate-100 w-full md:w-9/12 me-2" id="details">
-                <div>
+            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap flex-row justify-evenly text-slate-100 w-full md:w-9/12 me-2" id="details">
+                <div class="w-1/2">
                     <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
                     
                     <img src="./Media/clearSky.png" alt="" class="w-1/4  my-4" id="imgg">
@@ -38,7 +38,7 @@
                     <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
                 </div>
                 <div class=" flex flex-col justify-start p-3 w-full md:w-1/2">
-                    <div class="flex flex-row items-center mb-2">
+                    <div class="flex flex-wrap gap-2 flex-row items-center mb-2">
                         <input id="city" type="text" class="flex-grow p-2 mr-2" placeholder="Enter city name">
                         <input onclick="fetchdata()" type="button" value="Search" class="flex-none border p-2 cursor-pointer">
                     </div>

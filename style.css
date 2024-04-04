@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@100;200&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Russo+One&family=Shantell+Sans:wght@600;700&display=swap');
+
+        * {
+            font-family: "Nunito Sans", sans-serif;
+        }
+        
+
+        .bg_img {
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+        }
+
+        #bgg {
+            background-image: url('./Media/bg.jpg');
+            background-size: cover;
+            opacity: 0.8;
+            background-repeat: no-repeat;
+        }
+
+        .attribute-box {
+        width: 12rem;
+        height: 7rem;
+        background: rgba(255, 255, 255, 0.2); 
+        backdrop-filter: blur(10px);  
+        border-radius: 10px; 
+        border: 1px solid rgba(255, 255, 255, 0.3);  
+        padding: 10px 20px; 
+        display: flex; 
+        justify-content: space-between; 
+        margin-bottom: 10px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    }
+  
+
+   
+    .attribute-box p {
+        color: #fff; 
+        margin: 0; 
+    }

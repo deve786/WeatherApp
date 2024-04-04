@@ -130,7 +130,7 @@
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city1}&appid=5b4bee0ba241d092159faf007e166080`).then(i => i.json()).then(data => accessData(data))
 
         function accessData(data) {
-            searchwhe();
+            
 
             const date = new Date();
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

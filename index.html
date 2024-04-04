@@ -27,15 +27,41 @@
             background-image: url('./Media/bg.jpg');
             background-size: cover;
             opacity: 0.8;
+            background-repeat: no-repeat;
         }
+
+        .attribute-box {
+        width: 12rem;
+        height: 7rem;
+        background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+        backdrop-filter: blur(10px); /* Blur effect */
+        border-radius: 10px; /* Rounded corners for the boxes */
+        border: 1px solid rgba(255, 255, 255, 0.3); /* Light border for glass effect */
+        padding: 10px 20px; /* Padding inside each box */
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Space between attribute name and value */
+        margin-bottom: 10px; /* Margin at the bottom for spacing between boxes */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+  
+
+    /* Enhance the visibility of text within the attribute boxes */
+    .attribute-box p {
+        color: #fff; /* White text for better contrast */
+        margin: 0; /* Remove default margin */
+    }
+
+    /* Adjustments for the last attribute box */
+    .attribute-box:last-child {
+       
+    }
     </style>
 </head>
 
 <body id="bgg">
-    <div class="  flex justify-center items-center h-screen px-6 ">
-        <div class=" flex flex-col md:flex-row w-full justify-center   ">
-            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap flex-row justify-center text-slate-700 w-full md:w-9/12 me-2"
-                id="details">
+    <div class="  flex justify-center items-center  px-6 py-3">
+        <div class="flex flex-col md:flex-row justify-center items-center  px-4 md:h-screen md:px-6 lg:px-8 xl:px-10">
+            <div class="rounded-2xl bg_img py-12 px-6 flex flex-wrap justify-center text-slate-700 w-full lg:w-3/4 xl:w-fit mb-4 md:mb-0" id="details">
                 <div class="w-1/2">
                     <h1 class=" text-2xl"><i class="fa-solid fa-location-dot me-2"></i>City</h1>
 
@@ -54,41 +80,41 @@
                     <h2 class="text-md md:text-lg mt-2">Weather</h2>
                     <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
                 </div>
-                <div class=" flex flex-col justify-start p-3 w-full md:w-1/2">
+                <div class="flex flex-col justify-start p-3 w-full md:w-1/2">
                     <div class="flex flex-wrap gap-2 flex-row items-center mb-2">
                         <input id="city" type="text" class="flex-grow p-2 ps-3 mr-2 text-gray-900 outline-none rounded-2xl"
                             placeholder="Enter city name" >
                         <input onclick="fetchdata()" type="button" value="Search"
                             class="flex-none border p-2 cursor-pointer">
                     </div>
-                    <div class="flex flex-col justify-around space-y-2" id="details2">
-                        <div class="flex flex-row justify-between">
+                    <div class="flex flex-wrap flex-rows justify-evenly  gap-1 xl:mt-3" id="details2">
+                        <!-- <div class="attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-4">
                             <p>City</p>
                             <p>--</p>
-                        </div>
-                        <div class="flex flex-row justify-between">
+                        </div> -->
+                        <div class="attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p>Feels Like</p>
-                            <p>--</p>
+                            <p>-</p>
                         </div>
-                        <div class="flex flex-row justify-between">
+                        <div class="attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p>Pressure</p>
                             <p>-- </p>
                         </div>
-                        <div class="flex flex-row justify-between">
+                        <div class="attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-w-3/12 p-4">
                             <p>Humidity</p>
-                            <p>--</p>
+                            <p>-</p>
                         </div>
-                        <div class="flex flex-row justify-between">
+                        <div class=" attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-w-3/12 p-4">
                             <p>Wind Speed</p>
-                            <p>--</p>
+                            <p>-</p>
                         </div>
-                        <div class="flex flex-row justify-between">
+                        <div class="attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p>Sunrise</p>
-                            <p id="srise">--</p>
+                            <p id="srise">-</p>
                         </div>
-                        <div class="flex flex-row justify-between">
+                        <div class="attribute-box w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p>Sunset</p>
-                            <p id="sset">--</p>
+                            <p id="sset">-</p>
                         </div>
                     </div>
                 </div>

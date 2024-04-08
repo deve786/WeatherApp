@@ -1,6 +1,7 @@
 function fetchdata() {
         var city1 = city.value
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city1}&appid=5b4bee0ba241d092159faf007e166080`).then(i => i.json()).then(data => accessData(data))
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city1}&appid=5b4bee0ba241d092159faf007e166080`).then(i => i.json()).then(data => accessData(data)).catch(()=>error.innerHTML='City is not found', temp.innerHTML='--', date.innerHTML='--',  humidity.innerHTML='--', pressure.innerHTML='--', main.innerHTML='--', tempp.innerHTML='--', pressuree.innerHTML='--', humidityy.innerHTML='--', speedd.innerHTML='--', srise.innerHTML='--', sset.innerHTML='--',city2.innerHTML='')
+        
 
         function accessData(data) {
             
@@ -20,29 +21,30 @@ function fetchdata() {
             var temp = Math.floor(data.main.temp - 273.15)
 
 
-
+            document.getElementById('error').innerHTML=''
             details.innerHTML = `
 
                 <div class="w-4/4">
-                    <h1 class=" text-2xl sm:text-l"><i class="fa-solid fa-location-dot me-2"></i>${data.name}</h1>
+                    <h1 class=" text-2xl sm:text-l"><i class="fa-solid fa-location-dot me-2"></i><span id="city2">${data.name}</span></h1>
                     
                     <div id="imgg"><img src="./Media/clearSky.png" alt="" class="w-2/4  my-4" ></div>
-                    <h1 class="font-black text-3xl md:text-4xl mt-3">${temp}°C</h1>
-                    <h2 class="text-md md:text-lg mt-2">${da} ${mn} ${yr} |  ${day}</h2>
+                    <h1 class="font-black text-3xl md:text-4xl mt-3" id="temp">${temp}°C</h1>
+                    <h2 class="text-md md:text-lg mt-2" id="date">${da} ${mn} ${yr} |  ${day}</h2>
                     <div class="mt-2 flex flex-col sm:flex-row justify-around">
-    <div class="flex items-center mb-2 sm:mb-0"><i class="fa-solid fa-wind me-2"></i><span>Wind: ${data.wind.speed} km/h</span></div>
-    <div class="flex items-center mb-2 sm:mb-0"><span class="mdi mdi-water-percent me-2"></span><span>Humidity: ${data.main.humidity}%</span></div>
-    <div class="flex items-center"><i class="fas fa-temperature-up me-2"></i><span>Pressure: ${data.main.pressure} hPa</span></div>
-</div>
+                    <div class="flex items-center mb-2 sm:mb-0"><i class="fa-solid fa-wind me-2"></i><span>Wind: <span  id="speed">${data.wind.speed}</span> km/h</span></div>
+                    <div class="flex items-center mb-2 sm:mb-0"><span class="mdi mdi-water-percent me-2"></span><span>Humidity: <span id="humidity">${data.main.humidity}</span id="temp">%</span></div>
+                    <div class="flex items-center"><i class="fas fa-temperature-up me-2"></i><span>Pressure: <span  id="pressure">${data.main.pressure}</span> hPa</span></div>
+                </div>
 
-                    <h2 class="text-md font-black md:text-lg mt-2">${data.weather[0].main}</h2>
-                    <!-- <h2 class="text-md md:text-lg">Weather</h2> -->
+                    <h2 class="text-md font-black md:text-lg mt-2"  id="main">${data.weather[0].main}</h2>
+                    
                 </div>
                 <div class=" flex flex-col justify-start p-3 w-full md:w-1/2 ">
                     <div class="flex flex-wrap gap-2 flex-row items-center mb-2">
                         <input id="city" type="text" class="flex-grow p-2 mr-2 text-gray-900 outline-none rounded-2xl ps-3" placeholder="Enter city name">
                         <input onclick="fetchdata()" type="button" value="Search" id="i1" class="flex-none border p-2 cursor-pointer">
                     </div>
+                    <p class="ms-3" id="error"></p>
                     <div class="flex flex-wrap flex-rows justify-evenly  gap-1 xl:mt-3" id="details2">
                         
                     </div>
@@ -56,27 +58,27 @@ function fetchdata() {
 
                          <div class=" attribute-box flex flex-col justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p class="text-center">Feels Like</p>
-                            <p class="text-center">${temp}°C</p>
+                            <p class="text-center" id='tempp'>${temp}°C</p>
                         </div>
                         <div class="attribute-box flex flex-col justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p class="text-center">Pressure</p>
-                            <p class="text-center">${data.main.pressure}</p>
+                            <p class="text-center"  id='pressuree'>${data.main.pressure}</p>
                         </div>
                         <div class="attribute-box flex flex-col justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-w-3/12 p-4">
                             <p class="text-center">Humidity</p>
-                            <p class="text-center">${data.main.humidity}</p>
+                            <p class="text-center" id='humidityy'>${data.main.humidity}</p>
                         </div>
                         <div class=" attribute-box flex flex-col justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-w-3/12 p-4">
                             <p class="text-center">Wind Speed</p>
-                            <p class="text-center">${data.wind.speed} Km/h</p>
+                            <p class="text-center" id='speedd'>${data.wind.speed} Km/h</p>
                         </div>
                         <div class="attribute-box flex flex-col justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p class="text-center">Sunrise</p>
-                            <p id="srise" class="text-center">${data.sys.sunrise}</p>
+                            <p id="srise" class="text-center" id='sunrisee'>${data.sys.sunrise}</p>
                         </div>
                         <div class="attribute-box flex flex-col justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 lg:p-2 xl:w-3/12 p-4">
                             <p class="text-center">Sunset</p>
-                            <p id="sset" class="text-center">${data.sys.sunset}</p>
+                            <p id="sset" class="text-center" id='sunsett'>${data.sys.sunset}</p>
                         </div>
 
 
@@ -144,17 +146,12 @@ function fetchdata() {
 
             }
             else {
-                console.log("Really cold");
-                imgg.innerHTML = `
-                <img src="./Media/reallyCold.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4">
-            `
-                bgg.style.backgroundImage = "url('./Media/snowBg.gif')";
-                bgg.style.backgroundSize = "cover"
+                weatherImg.innerHTML='<img src="https:s//openweafffthermap.org/img/wn/01n@2x.png" alt="" class="w-1/2 my-4 lg:w-1/4  my-4"'
             }
             var rise = data.sys.sunrise;
             var zone = data.timezone;
             var set = data.sys.sunset;
-            console.log(rise);
+            
             srise.innerHTML = timecalc(rise, zone);
             sset.innerHTML = timecalc(set, zone);
             function timecalc(sun, zone) {
